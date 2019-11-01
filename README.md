@@ -12,7 +12,7 @@ $ yarn start
 # the produced code can be deployed (rsynced) to a remote server
 $ yarn build
 ```
-# Intelli 
+# Intelli-Spex
 ##this app is a project management app
 
 ### you can mange your events add post to each event and add comments on them too
