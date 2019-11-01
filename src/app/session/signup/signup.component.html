@@ -1,0 +1,49 @@
+<div class="session mat-indigo">
+  <div class="session-content">
+    <div class="session-wrapper">
+      <mat-card>
+        <mat-card-content>
+          <form >
+            <div class="text-xs-center pb-1">
+              <p class="mat-text-muted">Signing up </p>
+            </div>
+
+            <div fxLayout="row wrap" fxLayoutAlign="center start" class="mat-card-top">
+              <div fxFlex.gt-sm="100" fxFlex="100">
+                <div class="pb-1 mr-1" fxFlex="50%">
+                  <input matInput placeholder="First Name" name="first-name-box"  [(ngModel)]="signupModel.firstname">
+                </div>
+                <div class="pb-1 mr-1" fxFlex="50%">
+                  <input matInput placeholder="Last Name" name="last-name-box"  [(ngModel)]="signupModel.lastname">
+                </div>
+              </div>
+            </div>
+            <div fxLayout="row wrap" fxLayoutAlign="center start" class="mat-card-top">
+              <div fxFlex.gt-sm="100" fxFlex="100">
+                <div class="pb-1 mr-1" fxFlex="100%">
+                  <input style="width: 93%!important;" value="''" matInput placeholder="Email" name="email-box"  [(ngModel)]="signupModel.email">
+                </div>
+              </div>
+            </div>
+            <div fxLayout="row wrap" fxLayoutAlign="center start" class="mat-card-top">
+              <div fxFlex.gt-sm="100" fxFlex="100">
+                <div class="pb-1 mr-1" fxFlex="50%">
+                  <input type="password" matInput placeholder="Password" autocomplete="new-password" name="password-box"  [(ngModel)]="signupModel.password">
+                </div>
+                <div class="pb-1 mr-1" fxFlex="50%">
+                  <input type="password" matInput placeholder="confirmPassword" autocomplete="new-password" name="confirm-password-box"  [(ngModel)]="signupModel.confirmPassword">
+                </div>
+              </div>
+            </div>
+            <div fxLayout="row wrap" fxLayoutAlign="center start" class="mat-card-top mt-1">
+              <div fxFlex.gt-sm="100" fxFlex="100">
+                <button mat-raised-button color="primary" class="submit-button" (click)="onSubmit()"> Sign up
+                </button>
+              </div>
+            </div>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

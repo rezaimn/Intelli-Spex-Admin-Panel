@@ -1,0 +1,47 @@
+<mat-card class="page-card">
+    <mat-card-content>
+        <div class="pb-1 mt-1 page-title">
+            <mat-card-title class="mb-1 ">
+                Dashboard
+            </mat-card-title>
+        </div>
+        <hr>
+        <div style="margin-top: 1rem;">
+            <mat-card fxflex="50" fxFlex.xs="50" fxFlex.gt-xs="50" fxFlex.gt-md="50">
+                <mat-card-title>
+                    Admin
+                </mat-card-title>
+                <mat-card-content>
+                    <div fxLayout="row wrap" fxLayoutAlign="center center">
+                        <div>
+                            <div>
+                                <canvas baseChart height="300"
+                                        [data]="AdminPieChartData"
+                                        [labels]="AdminPieChartLabels"
+                                        [chartType]="PieChartType"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+            <mat-card fxflex="50" fxFlex.xs="50" fxFlex.gt-xs="50" fxFlex.gt-md="50">
+                <mat-card-title>
+                    Mobile
+                </mat-card-title>
+                <mat-card-content>
+                    <div fxLayout="row wrap" fxLayoutAlign="center center">
+
+                        <div>
+                            <div>
+                                <canvas baseChart height="300"
+                                        [data]="MobilePieChartData"
+                                        [labels]="MobilePieChartLabels"
+                                        [chartType]="PieChartType"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </mat-card-content>
+</mat-card>

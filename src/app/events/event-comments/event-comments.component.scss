@@ -1,0 +1,28 @@
+.operation-btn {
+  min-width: 62px !important;
+  line-height: 36px !important;
+  padding: 0 !important;
+  font-size: 12px !important;
+}
+.add-comment {
+
+  width: 84%;
+  height: 32px;
+  .send-comment {
+    position: relative;
+    right: -105%;
+    top: -30px;
+    cursor: pointer;
+  }
+
+  .comment-attachment {
+    position: relative;
+    right: -93%;
+    top: -30px;
+    cursor: pointer;
+  }
+  input{
+    padding-left: 3px;
+    padding-right: 12px;
+  }
+}

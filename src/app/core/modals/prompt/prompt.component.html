@@ -1,0 +1,5 @@
+<h3 mat-dialog-title>Are you sure?</h3>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No</button>
+  <button mat-button mat-raised-button cdkFocusInitial color="primary" [mat-dialog-close]="'success'">Yes</button>
+</div>

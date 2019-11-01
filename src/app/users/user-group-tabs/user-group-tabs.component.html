@@ -1,0 +1,22 @@
+<mat-card class="page-card">
+    <mat-card-content>
+        <div class="pb-1 mt-1 page-title">
+            <mat-card-title class="mb-1 ">
+                User&Group Management
+            </mat-card-title>
+        </div>
+        <hr>
+    <div class="card-block">
+        <div class="card-body content-scroll">
+            <mat-tab-group [selectedIndex]="selectedTabIndex">
+                <mat-tab label="User">
+                    <app-user-list></app-user-list>
+                </mat-tab>
+                <mat-tab label="Group">
+                    <app-user-groups></app-user-groups>
+                </mat-tab>
+            </mat-tab-group>
+        </div>
+    </div>
+    </mat-card-content>
+</mat-card>

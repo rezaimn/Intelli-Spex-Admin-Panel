@@ -1,0 +1,81 @@
+<mat-card class="page-card">
+    <mat-card-content>
+        <div class="pb-1 mt-1 page-title">
+            <mat-card-title class="mb-1 ">
+                Clients Management
+            </mat-card-title>
+        </div>
+        <hr>
+        <div class="example-button-row">
+            <button mat-raised-button style="padding: 0 45px;margin-left: 1rem;margin-right: 1rem"
+                    color="primary" routerLink="/root-admin/clients/create-client">Add
+                Client
+            </button>
+        </div>
+        <div class="card-block">
+            <div class="card-body content-scroll">
+                <div class="event-container">
+                    <!--<div fxLayout="row wrap" fxLayoutAlign="start start" class="mat-card-top">-->
+                    <!--<div fxFlex="33" fxFlex.gt-sm="33" fxFlex.md="33">-->
+                    <!--<div class="pb-1">-->
+                    <!--<input  matInput placeholder="Search Projects" #searchClients>-->
+                    <!--<i  class="material-icons search-icon">-->
+                    <!--search-->
+                    <!--</i>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--</div>-->
+
+                    <ngx-datatable
+                        #memberTable
+                        class="material striped"
+                        [rows]="model"
+                        [columnMode]="'flex'"
+                        [headerHeight]="60"
+                        [messages]="{emptyMessage: 'No Data', totalMessage: 'Total'}"
+                        style="width: 100%"
+                        [footerHeight]="45"
+                        [rowHeight]="50"
+                        [loadingIndicator]="isLoading"
+                        [externalPaging]="searchBox.length==0"
+                        [count]="count"
+                        [offset]="offset"
+                        [limit]="limit"
+                        (page)='getClientList($event)'>
+                        <ngx-datatable-column [resizeable]="false" prop="name" name="Client Name" [flexGrow]="2">
+                        </ngx-datatable-column>
+                        <ngx-datatable-column [resizeable]="false" prop="user.username" name="User Name" [flexGrow]="2">
+                        </ngx-datatable-column>
+                        <ngx-datatable-column [resizeable]="false" prop="user.firstname" name="First Name"
+                                              [flexGrow]="2">
+                        </ngx-datatable-column>
+                        <ngx-datatable-column [resizeable]="false" prop="user.lastname" name="Last Name" [flexGrow]="2">
+                        </ngx-datatable-column>
+                        <ngx-datatable-column [resizeable]="false" name="Disable/Enable" [flexGrow]="1">
+                            <ng-template let-value="value" let-row="row" ngx-datatable-cell-template
+                                         let-rowIndex="rowIndex">
+                                <mat-slide-toggle [(ngModel)]="row.status" color="primary"
+                                                  (change)="changeClientStatus(row)">
+                                </mat-slide-toggle>
+                            </ng-template>
+                        </ngx-datatable-column>
+                        <ngx-datatable-column [resizeable]="false" [flexGrow]="3">
+                            <ng-template let-value="value" let-row="row" ngx-datatable-cell-template
+                                         let-rowIndex="rowIndex">
+                                <button mat-raised-button style="margin-left: 1rem;margin-right: 1rem"
+                                        color="primary" [routerLink]="'/root-admin/clients/create-client/' + row.id ">
+                                    Edit
+                                </button>
+                                <button mat-icon-button class="user-list-delete-icon"
+                                        (click)="deleteClient(row, rowIndex)">
+                                    <mat-icon>cancel</mat-icon>
+                                </button>
+                            </ng-template>
+                        </ngx-datatable-column>
+
+                    </ngx-datatable>
+                </div>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>

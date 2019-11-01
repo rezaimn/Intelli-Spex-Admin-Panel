@@ -1,0 +1,88 @@
+<mat-card class="page-card">
+    <mat-card-content>
+        <div class="pb-1 mt-1 page-title">
+            <mat-card-title class="mb-1 ">
+                Projects Management
+            </mat-card-title>
+        </div>
+        <hr>
+        <div class="example-button-row" style="margin-bottom: 0px!important;margin-left: .333rem!important;">
+            <button mat-raised-button style="padding: 0 45px;margin-left: 1rem;margin-right: 1rem"
+                    color="primary" routerLink="/projects/addProject">Add
+                Project
+            </button>
+        </div>
+        <div class="card-block">
+            <div class="card-body content-scroll">
+                <div class="event-container">
+                    <div style="margin-left: .333rem!important;" fxLayout="row wrap" fxLayoutAlign="start start" class="mat-card-top">
+                        <div fxFlex="100" fxFlex.gt-sm="100" fxFlex.md="100">
+                            <mat-form-field class="search-input">
+                                <input type="tel" matInput placeholder="Search Projects" #searchProjects>
+                                <mat-icon matSuffix>search</mat-icon>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <ngx-datatable
+                        #memberTable
+                        class="material striped"
+                        [rows]="model"
+                        [columnMode]="'flex'"
+                        [headerHeight]="60"
+                        [messages]="{emptyMessage: 'No Data', totalMessage: 'Total'}"
+                        style="width: 100%"
+                        [footerHeight]="45"
+                        [rowHeight]="50"
+                        [loadingIndicator]="isLoading"
+                        [externalPaging]="searchBox.length==0"
+                        [count]="count"
+                        [offset]="offset"
+                        [limit]="limit"
+                        (page)='getProjectList($event)'>
+                        <ngx-datatable-column [resizeable]="false" prop="name" name="Project Name" [flexGrow]="2">
+                        </ngx-datatable-column>
+                        <ngx-datatable-column [resizeable]="false" prop="__meta__.events_count" name="Event Count"
+                                              [flexGrow]="1">
+                        </ngx-datatable-column>
+                        <ngx-datatable-column [resizeable]="false" prop="__meta__.users_count" name="Team Count"
+                                              [flexGrow]="1">
+                        </ngx-datatable-column>
+                        <ngx-datatable-column [resizeable]="false" name="Disable/Enable" [flexGrow]="1">
+                            <ng-template let-value="value" let-row="row" ngx-datatable-cell-template
+                                         let-rowIndex="rowIndex">
+                                <mat-slide-toggle [(ngModel)]="row.status" color="primary"
+                                                  (change)="changeProjectStatus(row)">
+                                </mat-slide-toggle>
+                            </ng-template>
+                        </ngx-datatable-column>
+                        <ngx-datatable-column [resizeable]="false" [flexGrow]="3">
+                            <ng-template let-value="value" let-row="row" ngx-datatable-cell-template
+                                         let-rowIndex="rowIndex">
+                                <button mat-raised-button style="margin-left: 1rem;margin-right: 1rem"
+                                        [disabled]="!row.status"
+                                        color="primary" [routerLink]="'/projects/project-list/' + row.id + '/events'">
+                                    Events
+                                </button>
+                                <button mat-raised-button style="margin-left: 1rem;margin-right: 1rem"
+                                        [disabled]="!row.status"
+                                        color="primary" [routerLink]="'/projects/project-list/' + row.id + '/users'">
+                                    User
+                                    Groups
+                                </button>
+                                <button mat-raised-button style="margin-left: 1rem;margin-right: 1rem"
+                                        [disabled]="!row.status"
+                                        color="primary">Settings
+                                </button>
+                                <!--<button mat-icon-button class="user-list-delete-icon" (click)="deleteBtn(row, rowIndex)">-->
+                                <!--<mat-icon>cancel</mat-icon>-->
+                                <!--</button>-->
+                            </ng-template>
+                        </ngx-datatable-column>
+
+                    </ngx-datatable>
+                </div>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>

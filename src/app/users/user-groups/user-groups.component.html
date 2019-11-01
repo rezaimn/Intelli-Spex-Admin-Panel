@@ -1,0 +1,47 @@
+<mat-card-content>
+
+    <div class="example-button-row">
+        <button mat-raised-button
+                style="padding: 0 45px;margin-left: .333rem!important;margin-right: 1rem;margin-top: 2vh"
+                color="primary" routerLink="/users/create-group" (click)="setSelectedGroup(null)">
+            Add Group
+        </button>
+    </div>
+    <ngx-datatable
+        #memberTable
+        class="material striped"
+        [rows]="model"
+        [columnMode]="'flex'"
+        [headerHeight]="60"
+        [messages]="{emptyMessage: 'No Data', totalMessage: 'Total'}"
+        style="width: 100%;margin-bottom: 10px"
+        [footerHeight]="45"
+        [rowHeight]="50"
+        [loadingIndicator]="isLoading">
+        <ngx-datatable-column [resizeable]="false" prop="name" name="Group Name" [flexGrow]="10">
+        </ngx-datatable-column>
+        <ngx-datatable-column [resizeable]="false" [flexGrow]="2">
+            <ng-template let-value="value" let-row="row" ngx-datatable-cell-template
+                         let-rowIndex="rowIndex">
+                <!-- <button mat-raised-button style="margin-left: 1rem;margin-right: 1rem" color="primary"
+                    [routerLink]="'/projects/' + row.id + '/events'">Events
+                </button>
+                <button mat-raised-button style="margin-left: 1rem;margin-right: 1rem" color="primary"
+                    [routerLink]="'/projects/' + row.id + '/users'">Users
+                </button>
+                <button mat-raised-button style="margin-left: 1rem;margin-right: 1rem"
+                    color="primary">Settings
+                </button>
+                <mat-slide-toggle [(ngModel)]="row.status" color="primary"
+                    (change)="changeProjectStatus(row)">
+                </mat-slide-toggle> -->
+                <button mat-raised-button style="margin-left: 1rem;margin-right: 1rem" color="primary"
+                        [routerLink]="'/users/create-group/'+ row.id" (click)="setSelectedGroup(row)">Edit
+                </button>
+            </ng-template>
+        </ngx-datatable-column>
+
+    </ngx-datatable>
+
+</mat-card-content>
+

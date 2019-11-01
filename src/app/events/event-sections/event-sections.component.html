@@ -1,0 +1,56 @@
+<mat-card class="page-card">
+    <mat-card-content>
+        <i class="material-icons back-icon" (click)="backClicked()">
+            reply
+        </i>
+        <div class="pb-1 mt-1 page-title">
+            <mat-card-title class="mb-1 ">
+                Event Sections
+            </mat-card-title>
+        </div>
+        <hr>
+        <div class="card-block">
+            <div class="card-body content-scroll">
+                <div class="event-container">
+
+                    <mat-accordion>
+                        <mat-expansion-panel (opened)="getSectionsPosts(section.id,null,i)"
+                                             *ngFor="let section of sectionList;let i=index" style="margin-bottom: 1vh">
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    <p style="margin-top: 15px">{{section.name}}</p>
+
+                                </mat-panel-title>
+                                <mat-panel-description style="float: right">
+
+                                </mat-panel-description>
+                                <i color="primary" class="material-icons add-post"
+                                   [routerLink]="'/events/create-post/'+selectedEvent+'/'+section.id">
+
+                                    add_circle
+                                </i>
+                            </mat-expansion-panel-header>
+                            <mat-card *ngFor="let post of postList" style="cursor: pointer" (click)="viewPost(post)"
+                                      fxFlex.lg="24%" fxFlex.md="32%" fxFlex.sm="48%" fxFlex.xs="100%">
+                                <mat-card-title>
+                                    {{post.title}}
+                                </mat-card-title>
+                                <mat-card-content class=" mr-2" style=" background-repeat: no-repeat;height: 240px;margin-right: 0px!important;
+  background-size: cover;" [style.background-image]=" 'url(' + post?.photoUrl + ')'| safe: 'style'">
+
+                                </mat-card-content>
+                            </mat-card>
+                            <mat-paginator [length]="section.count"
+                                           [pageSize]="8"
+                                           (page)="getSectionsPosts(section.id,$event,i)"
+                                           [pageSizeOptions]="[8]">
+                            </mat-paginator>
+                        </mat-expansion-panel>
+
+                    </mat-accordion>
+                </div>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>
+<div class="loading" *ngIf="isDownloading"></div>

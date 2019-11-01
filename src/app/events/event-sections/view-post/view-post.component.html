@@ -1,0 +1,229 @@
+<p style="font-weight: bold;margin: 0px">{{data.title}}</p>
+<div fxLayout="row wrap">
+    <mat-card
+            fxFlex="58%">
+        <mat-card-title>
+            <textarea class="mat-input-element" disabled rows="3"
+                      style="width: 94%!important;overflow: auto">{{data.description}}</textarea>
+
+        </mat-card-title>
+        <mat-card-content class=" mr-2" style=" width: 100%;height:65vh;margin-right: 0px!important;">
+            <img [src]=" data?.photoUrl" style="max-height: 60vh;width: 40vw"/>
+
+            <div class="like-post">
+                <span>
+                    <i class="material-icons" style="cursor: pointer" *ngIf="data.__meta__.is_liked=='0'" (click)="postLike()">
+                    favorite_border
+                </i>
+                <i class="material-icons" style="color: red;cursor: pointer" *ngIf="data.__meta__.is_liked=='1'"
+                   (click)="postLike()">
+                    favorite
+                </i>
+                </span>
+                <span>
+                    {{data.__meta__.count_likes}}
+                </span>
+
+            </div>
+
+        </mat-card-content>
+    </mat-card>
+    <mat-card
+            fxFlex="39%" style="padding-right: 0px">
+
+        <mat-card-content style="padding-top: 5px!important;">
+            <mat-tab-group>
+                <mat-tab [label]="'Comments '+data.__meta__.count_comments" style="height: 75vh;margin-top: 5px;">
+                    <div style="height: 68vh;margin-top: 5px;overflow-y: scroll;padding-bottom: 4vh" #lazyScroll>
+                        <mat-card *ngFor="let comment of allComments" >
+                            <div fxLayout="row wrap">
+                                <div fxFlex="83%">
+                                    <p style="margin: 0px; word-break: break-all;">{{comment.comment}}</p>
+                                </div>
+                                <a fxFlex="13%" [href]="baseUrl+'attachment/download/image/'+comment.attachments[0]+'?force'" *ngIf="comment.attachments.length>0" >
+                                    <i class="material-icons" style="cursor: pointer" >
+                                        attach_file
+                                    </i>
+                                </a>
+
+                                <!--<span style="float: left">-->
+                                <!---->
+                                <!--</span>-->
+                                <!--<span style="float: right">-->
+                                <!--<i class="material-icons">-->
+                                <!--crop_original-->
+                                <!--</i>-->
+                                <!--</span>-->
+                                <!--<span style="float: right">-->
+                                <!--<i class="material-icons">-->
+                                <!--volume_down-->
+                                <!--</i>-->
+                                <!--</span>-->
+                                <!--<span style="float: right">-->
+                                <!--<i class="material-icons">-->
+                                <!--movie_creation-->
+                                <!--</i>-->
+                                <!--</span>-->
+                                <!--<span style="float: right">-->
+                                <!--<i class="material-icons">-->
+                                <!--attach_file-->
+                                <!--</i>-->
+                                <!--</span>-->
+
+                            </div>
+                        </mat-card>
+                        <p style="width: 100%;text-align: center;font-size: 20px;cursor: pointer" (click)="onScroll(null)">+</p>
+                    </div>
+
+                    <div class="add-comment">
+                        <div fxLayout="row wrap" fxLayoutAlign="center start" class="mat-card-top">
+                            <div fxFlex.gt-sm="100" fxFlex="100" style="margin-right: 0px!important;height: 35px">
+                                <div class="pb-1 mr-1" fxFlex="100%" style="height: 35px">
+                                    <input class="mat-input-element" style="width: 99%!important;" matInput (keyup.enter)="addPostComment()"
+                                           placeholder="Comment text" name="name"
+                                           [(ngModel)]="commentText" required>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <i class="material-icons send-comment" (click)="addPostComment()">
+                            send
+                        </i>
+                        <label for="file-upload" class="comment-attachment" *ngIf="commentAttachment==undefined ">
+                            <i class="material-icons">
+                                attach_file
+                            </i>
+                        </label>
+                        <label class="comment-attachment" *ngIf="commentAttachment!=undefined ">
+                            <i class="material-icons " style="color: red"
+                               (click)="deleteAttachment()">
+                                remove_circle_outline
+                            </i>
+                        </label>
+
+                        <input type="file" id="file-upload" (change)="detectFiles($event)">
+                    </div>
+                </mat-tab>
+                <mat-tab label="Attachments" style="height: 75vh;margin-top: 5px;">
+                    <div style="height: 72vh;margin-top: 5px;">
+                        <mat-card *ngFor="let attachment of data.attachments" style="padding: 5px!important;">
+                            <div fxLayout="row wrap" >
+                                <div fxFlex="83%">
+                                    <p style="margin: 0px; word-break: break-all;">{{attachment}}</p>
+                                </div>
+                                <a fxFlex="13%" style="cursor: pointer" [href]="baseUrl+'attachment/download/image/'+attachment+'?force'">
+                                    <i class="material-icons">
+                                        attach_file
+                                    </i>
+                                </a>
+                                <!--<span style="float: left">-->
+                                <!---->
+                                <!--</span>-->
+                                <!--<span style="float: right">-->
+                                <!--<i class="material-icons">-->
+                                <!--crop_original-->
+                                <!--</i>-->
+                                <!--</span>-->
+                                <!--<span style="float: right">-->
+                                <!--<i class="material-icons">-->
+                                <!--volume_down-->
+                                <!--</i>-->
+                                <!--</span>-->
+                                <!--<span style="float: right">-->
+                                <!--<i class="material-icons">-->
+                                <!--movie_creation-->
+                                <!--</i>-->
+                                <!--</span>-->
+                                <!--<span style="float: right">-->
+                                <!--<i class="material-icons">-->
+                                <!--attach_file-->
+                                <!--</i>-->
+                                <!--</span>-->
+                            </div>
+                        </mat-card>
+                    </div>
+                </mat-tab>
+            </mat-tab-group>
+        </mat-card-content>
+    </mat-card>
+</div>
+<!--<form>-->
+
+<!--<div fxLayout="row wrap" fxLayoutAlign="center start" class="mat-card-top">-->
+<!--<div fxFlex.gt-sm="100" fxFlex="100">-->
+<!--<div class="pb-1 mr-1" fxFlex="100%">-->
+<!--<input matInput placeholder="Event Name" name="name"-->
+<!--[(ngModel)]="model.title" required>-->
+<!--</div>-->
+
+<!--</div>-->
+<!--</div>-->
+
+<!--<div fxLayout="row wrap" fxLayoutAlign="center start" class="mat-card-top">-->
+<!--<div fxFlex.gt-sm="100" fxFlex="100">-->
+<!--<div class="pb-1 mr-1" fxFlex="100%">-->
+<!--<textarea rows="3" matInput placeholder="Description" name="description"-->
+<!--[(ngModel)]="model.description" required></textarea>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+
+<!--<div fxLayout="row wrap" fxLayoutAlign="center start" class="mat-card-top">-->
+<!--<div fxFlex.gt-sm="100" fxFlex="100">-->
+<!--<div class="photoBox">-->
+<!--<button mat-icon-button-->
+<!--*ngIf="model.photo !== undefined"-->
+<!--class="removePhotoIcon"-->
+<!--style="    height: 50px;    color: red;"-->
+<!--(click)="removePhoto()">-->
+<!--<mat-icon>cancel</mat-icon>-->
+<!--</button>-->
+<!--<img [src]="url" class="rounded mr-2" width="180" *ngIf="model.photo !== undefined">-->
+<!--<label for="file-upload" class="custom-file-upload" *ngIf="model.photo == undefined">-->
+<!--<img src="../../../../assets/images/placeholder.png" class="rounded" width="80"-->
+<!--height="80">-->
+<!--</label>-->
+<!--<input type="file" id="file-upload" (change)="detectPhotos($event)">-->
+
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+
+
+<!--<div fxLayout="row wrap" fxLayoutAlign="center start" class="mat-card-top">-->
+<!--<div fxFlex.gt-sm="100" fxFlex="100">-->
+<!--<label for="attachment-upload" class="attachment-upload" style="text-align: center">-->
+<!--<mat-card class="rounded">Attachment</mat-card>-->
+<!--</label>-->
+<!--<input type="file" id="attachment-upload" multiple (change)="detectFiles($event)">-->
+<!--<div *ngFor="let item of attachmentsName;let i=index">-->
+<!--<mat-card class="rounded"-->
+<!--style="padding: 0 !important;height: 50px;line-height: 0px;background-color: #ece9e9;">-->
+<!--<div fxLayout="row wrap" fxLayoutAlign="center start" class="mat-card-top">-->
+<!--<div fxFlex.gt-sm="50" fxFlex="100" fxLayoutAlign="start"-->
+<!--style="padding: 28px;">-->
+<!--{{item}}-->
+<!--</div>-->
+<!--<div fxFlex.gt-sm="50" fxFlex="100" fxLayoutAlign="end">-->
+<!--<button mat-icon-button-->
+<!--class="cancelIcon"-->
+<!--style="    height: 50px;    color: red;margin-left: 1rem!important;"-->
+<!--(click)="deleteAttachments(i)">-->
+<!--<mat-icon class="img-delete-icon">cancel</mat-icon>-->
+<!--</button>-->
+<!--</div>-->
+<!--</div>-->
+<!--</mat-card>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+
+<!--<div fxLayout="row wrap" fxLayoutAlign="center start" class="mat-card-top mt-1">-->
+<!--<div fxFlex.gt-sm="100" fxFlex="100">-->
+<!--<button mat-raised-button color="primary" class="submit-button" (click)="addPost()">-->
+<!--Create Post-->
+<!--</button>-->
+<!--</div>-->
+<!--</div>-->
+<!--</form>-->

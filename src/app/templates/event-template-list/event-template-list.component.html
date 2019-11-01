@@ -1,0 +1,72 @@
+<mat-card class="page-card">
+    <mat-card-content>
+        <i class="material-icons back-icon" (click)="backClicked()">
+            reply
+        </i>
+        <div class="pb-1 mt-1 page-title">
+            <mat-card-title class="mb-1 ">
+                Event Template Management
+            </mat-card-title>
+        </div>
+        <hr>
+        <div class="example-button-row" style="margin-bottom: 0px!important;margin-left: .333rem!important;">
+            <button mat-raised-button style="margin-left: 1rem;margin-right: 1rem" color="primary"
+                    pastyle="padding: 0 45px;"
+                    routerLink="/templates/addTemplate">New Template
+            </button>
+        </div>
+        <div class="card-block">
+            <div class="card-body content-scroll">
+
+                <div style="margin-left: .333rem!important;" fxLayout="row wrap" fxLayoutAlign="start start" class="mat-card-top">
+                    <div fxFlex="100" fxFlex.gt-sm="100" fxFlex.md="100">
+                        <mat-form-field class="search-input">
+                            <input type="tel" matInput placeholder="Search Projects" #searchTemplates>
+                            <mat-icon matSuffix>search</mat-icon>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <ngx-datatable
+                    #memberTable
+                    class="material striped"
+                    [rows]="model"
+                    [columnMode]="'flex'"
+                    [headerHeight]="60"
+                    [messages]="{emptyMessage: 'No Data', totalMessage: 'Total'}"
+                    style="width: 100%"
+                    [footerHeight]="45"
+                    [rowHeight]="80"
+                    [loadingIndicator]="isLoading"
+                    [externalPaging]="searchBox.length==0"
+                    [count]="count"
+                    [offset]="offset"
+                    [limit]="limit"
+                    (page)='getEventTemplateList($event)'>
+                    <ngx-datatable-column [resizeable]="false" prop="name" name="Template Name" [flexGrow]="4">
+                    </ngx-datatable-column>
+                    <ngx-datatable-column [resizeable]="false" prop="name" name="Disable/Enable" [flexGrow]="1">
+                        <ng-template let-value="value" let-row="row" ngx-datatable-cell-template
+                                     let-rowIndex="rowIndex">
+                            <mat-slide-toggle style="width: 46px;margin-right: 2rem" color="primary">
+                                <span style="position: relative;margin-left: -63px;top: -25px;z-index: 9999;">Enable/Disable</span>
+                            </mat-slide-toggle>
+                        </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column [resizeable]="false" [flexGrow]="2">
+                        <ng-template let-value="value" let-row="row" ngx-datatable-cell-template
+                                     let-rowIndex="rowIndex">
+                            <button mat-raised-button style="margin-left: 1rem;margin-right: 2rem"
+                                    routerLink="/templates/addTemplate/{{row.id}}"
+                                    color="primary">Edit
+                            </button>
+                            <!--<button mat-icon-button (click)="deleteBtn(row, rowIndex)">-->
+                            <!--<mat-icon style=" color: red;">cancel</mat-icon>-->
+                            <!--</button>-->
+                        </ng-template>
+                    </ngx-datatable-column>
+                </ngx-datatable>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>

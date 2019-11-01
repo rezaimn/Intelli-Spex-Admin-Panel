@@ -1,0 +1,80 @@
+.logo {
+    margin: 15px !important;
+}
+.search-box {
+    min-height: 64px;
+    padding: 8px 24px 0;
+    display: flex;
+    align-items: center;
+    min-width: auto;
+    align-content: center;
+    justify-content: flex-start;
+      
+    .search-icon-label{
+      margin-bottom: 0 !important;
+      margin-right: 10px;
+    }
+}
+
+.eventy-type-container {
+    margin-left: 30px;
+}
+
+.spinner-container mat-spinner {
+    position: fixed;
+    z-index: 999;
+    height: 2em;
+    width: 2em;
+    overflow: show;
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
+  
+.event-container {
+    margin: 30px;
+    box-shadow: 0px 4px 5px -2px rgba(0, 0, 0, 0.2),
+                0px 7px 10px 1px rgba(0, 0, 0, 0.14), 
+                0px 2px 16px 1px rgba(0, 0, 0, 0.12);
+}
+
+.mat-form-field {
+    font-size: 14px;
+    width: 75%;
+}
+.mat-table {
+    width: 100%;
+    background: transparent;
+    box-shadow: none;
+    .mat-column-checkbox {
+        flex: 0 1 64px !important;
+        padding-left: 18px !important;
+        border-right: 1px solid lightgrey;
+        align-self: stretch;
+        text-align: center
+    }
+    .mat-column-postImage {
+        flex: 0 1 150px;
+        padding-left: 30px;
+        margin-right: 20px;
+        .event-thumb {
+            width:100px;
+            height: 100px;
+            object-fit: contain;
+            margin: 15px;
+        }
+    }
+    .mat-column-eventname {
+        padding-left: 50px;
+    }
+
+    .event {
+        position: relative;
+        cursor: pointer;
+    }
+
+
+
+}

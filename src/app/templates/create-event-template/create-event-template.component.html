@@ -1,0 +1,129 @@
+
+<mat-card class="page-card">
+    <mat-card-content>
+        <i class="material-icons back-icon" (click)="backClicked()">
+            reply
+        </i>
+        <div class="pb-1 mt-1 page-title">
+            <mat-card-title class="mb-1 ">
+                {{this.param ? 'Update Template' : 'Create an Template'}}
+            </mat-card-title>
+        </div>
+        <hr>
+        <div class="create-form">
+            <div class="session-wrapper" style="padding-top: 1%!important;">
+                <form>
+                    <div class="photoBox">
+                        <button mat-icon-button
+                                *ngIf="model.photo !== undefined"
+                                class="removePhotoIcon"
+                                style="    height: 50px;    color: red;"
+                                (click)="removePhoto()">
+                            <mat-icon>cancel</mat-icon>
+                        </button>
+                        <img [src]="url" class="rounded mr-2" width="180" *ngIf="model.photo !== undefined">
+                        <label for="file-upload" class="custom-file-upload" *ngIf="model.photo == undefined">
+                            <img src="../../../assets/images/placeholder.png" class="rounded" width="80"
+                                 height="80">
+                        </label>
+                        <input type="file" id="file-upload" (change)="detectPhotos($event)"
+                        >
+                        <!--<small-->
+                        <!--*ngIf="eventForm.controls['image'].hasError('required') && eventForm.controls['image'].touched"-->
+                        <!--class="mat-text-warn">Please enter Image.-->
+                        <!--</small>-->
+                    </div>
+                    <div fxLayout="row wrap" fxLayoutAlign="center start" class="mat-card-top">
+                        <div fxFlex="100">
+                            <div class="pb-1 mr-1" fxFlex="40%">
+                                <input matInput placeholder="Template Name" name="template-name"
+                                       [(ngModel)]="model.name" required>
+
+                            </div>
+                            <div class="pb-1 mr-1" fxFlex="40%">
+                                <label>Select Location Type</label>
+                                <select matInput [(ngModel)]="model.locationType"  name="location-type"
+                                        (change)="changeGeo()">
+                                    <option *ngFor="let item of geoCodeItems" [value]="item.value">
+                                        {{item.name}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div fxLayout="row wrap" fxLayoutAlign="center start" class="mat-card-top">
+                        <div fxFlex="100">
+                            <div class="pb-1 mr-1" fxFlex="40%">
+                                <input style="width: 280px!important;margin-right: 20px" matInput placeholder="Section Name" name="section-name"
+                                       [(ngModel)]="sectionName">
+                                <button mat-raised-button style="height: 34px;width: 97px" color="primary"
+                                        class="submit-button  mr-1  " (click)="addSection()">Add
+                                    Section
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div fxLayout="row wrap" fxLayoutAlign="center start" class="mat-card-top">
+                        <div fxFlex="100">
+
+                            <div class="pb-1 mr-1" fxFlex="40%">
+
+                                <div fxFlex class="fullWidth">
+                                    <mat-list
+                                            dndDropzone
+                                            [dndHorizontal]="layout.dndHorizontal"
+                                            dndEffectAllowed="copyMove"
+                                            (dndDrop)="onDrop($event, model.sections)"
+                                            class="dndList">
+                                        <mat-list-item dndPlaceholderRef class="dndPlaceholder"></mat-list-item>
+                                        <mat-list-item style="width: 422px;height: 38px" *ngFor="let item of model.sections;let i=index"
+                                                       [dndDraggable]="item"
+                                                       [dndEffectAllowed]="item.effectAllowed"
+                                                       [dndDisableIf]="item.disable"
+                                                       (dndStart)="onDragStart($event)"
+                                                       (dndCopied)="onDragged(item, model.sections, 'copy')"
+                                                       (dndLinked)="onDragged(item, model.sections, 'link')"
+                                                       (dndMoved)="onDragged(item, model.sections, 'move')"
+                                                       (dndCanceled)="onDragged(item, model.sections, 'none')"
+                                                       (dndEnd)="onDragEnd($event)">
+                                            <mat-icon *ngIf="item.handle"
+                                                      mat-list-icon
+                                                      dndHandle>drag_handle
+                                            </mat-icon>
+                                            <h2 mat-line>{{item.name}}</h2>
+                                            <button mat-icon-button
+                                                    class="cancelIcon"
+                                                    (click)="deleteSection(i)">
+                                                <mat-icon
+                                                        mat-list-icon
+                                                        style="color: red;"
+                                                        dndHandle>cancel
+                                                </mat-icon>
+                                            </button>
+
+                                        </mat-list-item>
+                                    </mat-list>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div fxLayout="row wrap" fxLayoutAlign="center start" class="mat-card-top mt-1">
+                        <div fxFlex.gt-sm="100" fxFlex="100">
+                            <button mat-raised-button color="primary" class="submit-button" (click)="addEventTemplate()">
+                                {{this.param ? 'Update Template' : 'Create Template'}}
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>
+<!--</div>-->
+<!--</div>-->
+
+
+

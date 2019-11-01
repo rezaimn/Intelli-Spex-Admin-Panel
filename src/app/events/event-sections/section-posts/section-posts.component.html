@@ -1,0 +1,41 @@
+<mat-card-content>
+    <div class="pb-1 mt-1">
+        <mat-card-title class="mb-1">Section Posts</mat-card-title>
+    </div>
+    <div class="card-block">
+        <div class="card-body content-scroll">
+            <div class="event-container">
+
+                <div class="example-button-row">
+                    <button mat-raised-button style="padding: 0 45px;margin-left: 1rem;margin-right: 1rem"
+                            color="primary"  (click)="backClicked()">Go Back
+                    </button>
+                    <button mat-raised-button style="padding: 0 45px;" class="ml-1" color="primary"
+                            [routerLink]="'/events/create-post/'+selectedEvent+'/'+selectedSection">Add Post
+                    </button>
+
+                </div>
+                <mat-paginator [length]="count"
+                               [pageSize]="8"
+                               (page)="getEventPosts($event)"
+                               [pageSizeOptions]="[8]">
+                </mat-paginator>
+            </div>
+            <div fxLayout="row wrap">
+                <mat-card *ngFor="let post of model" style="cursor: pointer"  (click)="viewPost(post)"
+                        fxFlex.lg="24%" fxFlex.md="32%" fxFlex.sm="48%" fxFlex.xs="100%">
+                    <mat-card-title>
+                       {{post.title}}
+                    </mat-card-title>
+                    <mat-card-content class=" mr-2" style=" background-repeat: no-repeat;height: 240px;margin-right: 0px!important;
+  background-size: cover;" [style.background-image]=" 'url(' + post?.photoUrl + ')'| safe: 'style'">
+
+                    </mat-card-content>
+                </mat-card>
+            </div>
+
+        </div>
+    </div>
+</mat-card-content>
+
+

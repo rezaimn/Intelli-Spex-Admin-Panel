@@ -1,0 +1,52 @@
+<mat-card class="page-card">
+  <mat-card-content>
+    <i class="material-icons back-icon" (click)="backClicked()">
+      reply
+    </i>
+    <div class="pb-1 mt-1 page-title">
+      <mat-card-title class="mb-1 ">
+       Project Events
+      </mat-card-title>
+    </div>
+    <hr>
+  <div class="card-block">
+    <div class="card-body content-scroll">
+      <div class="event-container">
+        <div class="example-button-row">
+          <!-- <button mat-raised-button style="padding: 0 45px;margin-left: 1rem;margin-right: 1rem" color="primary"
+            (click)="addEvent()">
+            Add Event
+          </button> -->
+        </div>
+        <ngx-datatable 
+          #memberTable 
+          class="material striped" 
+          [rows]="model" 
+          [columnMode]="'flex'" 
+          [headerHeight]="60"
+          [messages]="{emptyMessage: 'No Data', totalMessage: 'Total'}" 
+          style="width: 30%" 
+          [footerHeight]="45"
+          [rowHeight]="50" 
+          [loadingIndicator]="isLoading" 
+          [externalPaging]="true" 
+          [count]="count" 
+          [offset]="offset"
+          [limit]="limit" 
+          (page)='getProjectEvents($event)'>
+          <ngx-datatable-column [resizeable]="false" prop="name" name="Events" [flexGrow]="3">
+          </ngx-datatable-column>
+          <!-- <ngx-datatable-column [resizeable]="false" [flexGrow]="1">
+            <ng-template let-value="value" let-row="row" ngx-datatable-cell-template let-rowIndex="rowIndex">
+              <button mat-icon-button class="user-list-delete-icon" (click)="deleteBtn(row, rowIndex)">
+                <mat-icon>cancel</mat-icon>
+              </button>
+            </ng-template>
+          </ngx-datatable-column> -->
+
+        </ngx-datatable>
+      </div>
+    </div>
+  </div>
+</mat-card-content>
+</mat-card>

@@ -1,0 +1,97 @@
+<mat-card-content>
+    <div class="card-block">
+        <div class="card-body content-scroll">
+            <div class="event-container">
+                <div class="pb-1 mt-1">
+                    <mat-card-title class="mb-1">
+                       Create Post
+                    </mat-card-title>
+                </div>
+                <div class="example-button-row">
+                    <button mat-raised-button style="padding: 0 45px;margin-left: 1rem;margin-right: 1rem"
+                            color="primary"  (click)="backClicked()">Go Back
+                    </button>
+                </div>
+                <form>
+
+                    <div fxLayout="row wrap" fxLayoutAlign="center start" class="mat-card-top">
+                        <div fxFlex.gt-sm="100" fxFlex="100">
+                            <div class="pb-1 mr-1" fxFlex="100%">
+                                <input matInput placeholder="Post Name" name="name"
+                                       [(ngModel)]="model.title" required>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div fxLayout="row wrap" fxLayoutAlign="center start" class="mat-card-top">
+                        <div fxFlex.gt-sm="100" fxFlex="100">
+                            <div class="pb-1 mr-1" fxFlex="100%">
+                                <textarea rows="3" matInput placeholder="Description" name="description"
+                                          [(ngModel)]="model.description" required></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div fxLayout="row wrap" fxLayoutAlign="center start" class="mat-card-top">
+                        <div fxFlex.gt-sm="100" fxFlex="100">
+                            <div class="photoBox">
+                                <button mat-icon-button
+                                        *ngIf="model.photo !== undefined"
+                                        class="removePhotoIcon"
+                                        style="    height: 50px;    color: red;"
+                                        (click)="removePhoto()">
+                                    <mat-icon>cancel</mat-icon>
+                                </button>
+                                <img [src]="url" class="rounded mr-2" width="180" *ngIf="model.photo !== undefined">
+                                <label for="file-upload" class="custom-file-upload" *ngIf="model.photo == undefined">
+                                    <img src="../../../../assets/images/placeholder.png" class="rounded" width="80"
+                                         height="80">
+                                </label>
+                                <input type="file" id="file-upload" (change)="detectPhotos($event)">
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div fxLayout="row wrap" fxLayoutAlign="center start" class="mat-card-top">
+                        <div fxFlex.gt-sm="100" fxFlex="100">
+                            <label for="attachment-upload" class="attachment-upload" style="text-align: center">
+                                <mat-card class="rounded">Attachment</mat-card>
+                            </label>
+                            <input type="file" id="attachment-upload" multiple (change)="detectFiles($event)">
+                            <div *ngFor="let item of attachmentsName;let i=index">
+                                <mat-card class="rounded"
+                                          style="padding: 0 !important;height: 50px;line-height: 0px;background-color: #ece9e9;">
+                                    <div fxLayout="row wrap" fxLayoutAlign="center start" class="mat-card-top">
+                                        <div  fxFlex="74%"
+                                             style="padding: 28px;">
+                                            {{item}}
+                                        </div>
+                                        <div  fxFlex="12%">
+                                            <button mat-icon-button
+                                                    class="cancelIcon"
+                                                    style="    height: 50px;    color: red;margin-left: 1rem!important;"
+                                                    (click)="deleteAttachments(i)">
+                                                <mat-icon class="img-delete-icon">cancel</mat-icon>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </mat-card>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div fxLayout="row wrap" fxLayoutAlign="center start" class="mat-card-top mt-1">
+                        <div fxFlex.gt-sm="100" fxFlex="100">
+                            <button mat-raised-button color="primary" class="submit-button" (click)="addPost()">
+                                Create Post
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</mat-card-content>

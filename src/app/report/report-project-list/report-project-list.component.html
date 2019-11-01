@@ -1,0 +1,52 @@
+<mat-card class="page-card">
+    <mat-card-content>
+        <div class="pb-1 mt-1 page-title">
+            <mat-card-title class="mb-1 ">
+                Reports Management
+            </mat-card-title>
+        </div>
+        <hr>
+        <div class="card-block">
+            <div class="card-body content-scroll">
+                <div class="event-container">
+                    <ngx-datatable
+                        #memberTable
+                        class="material striped"
+                        [rows]="model"
+                        [columnMode]="'flex'"
+                        [headerHeight]="60"
+                        [messages]="{emptyMessage: 'No Data', totalMessage: 'Total'}"
+                        style="width: 100%"
+                        [footerHeight]="45"
+                        [rowHeight]="50"
+                        [loadingIndicator]="isLoading"
+                        [externalPaging]="true"
+                        [count]="count"
+                        [offset]="offset"
+                        [limit]="limit"
+                        (page)='getProjectList($event)'>
+                        <ngx-datatable-column [resizeable]="false" prop="name" name="Project Name" [flexGrow]="3">
+                        </ngx-datatable-column>
+                        <ngx-datatable-column [resizeable]="false" prop="__meta__.events_count" name="Event Count"
+                                              [flexGrow]="1">
+                        </ngx-datatable-column>
+                        <ngx-datatable-column [resizeable]="false" prop="__meta__.users_count" name="Team Count"
+                                              [flexGrow]="1">
+                        </ngx-datatable-column>
+                        <ngx-datatable-column [resizeable]="false" [flexGrow]="1">
+                            <ng-template let-value="value" let-row="row" ngx-datatable-cell-template
+                                         let-rowIndex="rowIndex">
+                                <button mat-raised-button style="margin-left: 1rem;margin-right: 1rem"
+                                        color="primary" [routerLink]="'/reports/project-events/'+row.id"
+                                        (click)="loadProjectEvents(row)">Events
+                                </button>
+
+                            </ng-template>
+                        </ngx-datatable-column>
+
+                    </ngx-datatable>
+                </div>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>

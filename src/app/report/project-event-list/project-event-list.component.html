@@ -1,0 +1,57 @@
+<mat-card class="page-card">
+    <mat-card-content>
+        <i class="material-icons back-icon" (click)="backClicked()">
+            reply
+        </i>
+        <div class="pb-1 mt-1 page-title">
+            <mat-card-title class="mb-1 ">
+                Project Events
+            </mat-card-title>
+        </div>
+        <hr>
+        <div class="card-block">
+            <div class="card-body content-scroll">
+                <div class="event-container">
+                    <ngx-datatable
+                            class="material striped"
+                            [rows]="model"
+                            [columnMode]="'flex'"
+                            [headerHeight]="60"
+                            [messages]="{emptyMessage: 'No Data', totalMessage: 'Total'}"
+                            style="width: 100%"
+                            [footerHeight]="45"
+                            [rowHeight]="50"
+                            [loadingIndicator]="isLoading"
+                            [externalPaging]="true"
+                            [count]="count"
+                            [offset]="offset"
+                            [limit]="limit"
+                            (page)='getEventList($event)'>
+                        <ngx-datatable-column [flexGrow]="5" prop="name" [resizeable]="false" name="Event Name ">
+                        </ngx-datatable-column>
+                        <ngx-datatable-column [flexGrow]="3" [resizeable]="false" prop="location" name="Location">
+                        </ngx-datatable-column>
+                        <ngx-datatable-column [flexGrow]="3" [resizeable]="false">
+                            <ng-template let-value="value" let-row="row" ngx-datatable-cell-template
+                                         let-rowIndex="rowIndex">
+                                <button mat-raised-button class="operation-btn"
+                                        style="margin-left: 1rem;margin-right: 1rem ;padding-left: 5px;padding-right: 5px"
+                                        color="primary" (click)="downloadEvent(row,rowIndex)">Download
+                                </button>
+                                <!--<a color="success"  [id]="'download-link-'+row.id" [href]="generatedDownloadLinks|getEventDownloadLinkById:row.id" target="_blank">-->
+                                <!--<button mat-raised-button class="operation-btn" style="margin-left: 1rem;margin-right: 1rem"-->
+
+                                <!--color="primary" [disabled]="(generatedDownloadLinks|getEventDownloadLinkById:row.id)==''" >Download-->
+                                <!--</button>-->
+                                <!--</a>-->
+
+                            </ng-template>
+                        </ngx-datatable-column>
+
+                    </ngx-datatable>
+                </div>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>
+<div class="loading" *ngIf="isDownloading"></div>

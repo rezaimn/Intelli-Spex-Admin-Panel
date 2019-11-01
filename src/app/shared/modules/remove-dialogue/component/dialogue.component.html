@@ -1,0 +1,23 @@
+<div class="mr-2 ml-2">
+    <div fxLayout="row" fxLayoutWrap="wrap" >
+        <div class="mt-1"  fxFlex.gt-md="100" fxFlex.gt-sm="100" fxFlex="100" fxLayoutAlign="center center" style="text-align: center;">
+            <mat-card-title style="width: 98%">{{title}}</mat-card-title>
+        </div>
+    </div>
+    <div fxLayout="row" fxLayoutWrap="wrap" >
+        <div class="mt-1" fxFlex.gt-md="100" fxFlex.gt-sm="100" fxFlex="100" fxLayoutAlign="center center" style="text-align: center;">
+            <mat-card-subtitle style="width: 98%">{{subTitle}}</mat-card-subtitle>
+        </div>
+    </div>
+    <div fxLayout="row" fxLayoutWrap="wrap" >
+        <div class="mt-1" fxFlex.gt-md="100" fxFlex.gt-sm="100" fxFlex="100" fxLayoutAlign="center center" style="text-align: center;">
+            <mat-card-content style="width: 98%">
+                <button mat-raised-button color="warn" id="deleteBtn"
+                        (click)="dialogRef.close($event)" >{{firstBtn}}</button>
+                <button mat-raised-button (click)="onNoClick()" color="primary" mat-dialog-close class="ml-1" style="margin-left: 5px !important;">{{lastBtn}}</button>
+            </mat-card-content>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,39 @@
+<mat-card class="page-card">
+    <mat-card-content>
+        <i class="material-icons back-icon" (click)="backClicked()">
+            reply
+        </i>
+        <div class="pb-1 mt-1 page-title">
+            <mat-card-title class="mb-1 ">
+                {{this.id ? "Update Client" : "Create Client"}}
+            </mat-card-title>
+        </div>
+        <hr>
+        <div fxLayout="row wrap" fxLayoutAlign="center start" class="mat-card-top">
+            <div fxFlex.gt-sm="100" fxFlex="100">
+                <div class="pb-1 mr-1 mt-1" fxFlex="50%">
+                    <input matInput [(ngModel)]="model.name" placeholder="name" name="name" required>
+                    <!-- <small *ngIf="eventForm.controls['name'].hasError('required') && eventForm.controls['name'].touched"
+                        class="mat-text-warn">Please enter name.
+                    </small> -->
+                </div>
+            </div>
+            <div fxFlex.gt-sm="100" fxFlex="100">
+                <div class="pb-1 mr-1 mt-1" fxFlex="50%">
+                    <input [disabled]="this.id" matInput [(ngModel)]="model.email" placeholder="email" name="email"
+                           required>
+                    <!-- <small *ngIf="eventForm.controls['name'].hasError('required') && eventForm.controls['name'].touched"
+                        class="mat-text-warn">Please enter name.
+                    </small> -->
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row wrap" fxLayoutAlign="center start" class="mat-card-top mt-1">
+            <div fxFlex.gt-sm="100" fxFlex="100">
+                <button mat-raised-button color="primary" class="submit-button"
+                        (click)="addUpdateClient()">{{this.id ? 'Update Client' : 'Create Client'}}
+                </button>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>

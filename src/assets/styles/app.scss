@@ -1,0 +1,148 @@
+@import 'node_modules/angular2-toaster/toaster';
+@import 'node_modules/angular2-toaster/src/toaster';
+@import "scss/material.variables";
+@import "scss/material.themes";
+@import "scss/mixins/bi-app/bi-app-ltr";
+// Core Variables and Mixins
+@import "scss/app.variables";
+@import "scss/mixins";
+// Core Styles
+@import "scss/core";
+@import "scss/material";
+@import "scss/utilities/utilities";
+
+.user-list-delete-icon{
+  color: red;
+}
+.mat-slide-toggle.mat-primary.mat-checked .mat-slide-toggle-thumb {
+  background-color: #006dbb;
+}
+.mat-slide-toggle.mat-primary.mat-checked .mat-slide-toggle-bar {
+  background-color: rgba(0, 109, 187, 0.5) 
+}
+.mat-drawer-inner-container {
+  padding-right: 0;
+  padding-left: 0;
+  text-align: center;
+}
+
+
+ngx-datatable {
+  width: 99% !important;
+}
+
+select {
+  width: 100%;
+  border-radius: 5px;
+  height: 100%;
+}
+
+.mat-drawer.mat-drawer-side, .mat-toolbar.mat-primary {
+  background: rgb(0, 72, 124);
+}
+
+.mat-nav-list a {
+  color: white !important;
+}
+
+.mat-flat-button.mat-primary, .mat-raised-button.mat-primary, .mat-fab.mat-primary, .mat-mini-fab.mat-primary {
+  background-color: rgb(1, 111, 185);
+}
+
+.mat-raised-button {
+  margin-left: 0 !important;
+}
+
+.mat-input-element {
+  padding: 0.5rem 1rem!important;
+  border-radius: 3px!important;
+  border: 1px solid rgba(0, 0, 0, 0.42)!important;
+  width: auto!important;
+  background: #fff!important;
+}
+
+input::placeholder {
+  color: rgba(0, 0, 0, 0.72) !important;
+}
+
+input::placeholder::before {
+  font-family: FontAwesome;
+  content: "\f002";
+}
+
+.example-button-row {
+  margin-bottom: 1rem;
+}
+.search-icon{
+  position: relative;
+  right: 25px;
+  top: 7px;
+}
+.mat-tab-label{
+  min-width: 49%!important;
+}
+.mat-dialog-container{
+  padding-top: 15px!important;
+}
+.mat-tab-body-content{
+  overflow-x: hidden!important;
+  overflow-y: hidden!important;
+  height: 100%!important;
+}
+.mat-form-field-appearance-legacy .mat-form-field-label{
+  margin-top: 5px;
+  margin-left: 5px;
+}
+.create-form{
+  .session-wrapper{
+    width: 60%!important;
+    max-width: 100%!important;
+
+    margin-top: 5vh;
+    padding: 5%;
+    margin-left: 20px!important;
+    input{
+      width: 400px!important;
+    }
+    select{
+      width: 434px!important;
+      height: 38px;
+      padding: 0.5rem 1rem !important
+    }
+
+  }
+}
+.back-icon{
+  position: absolute;
+  top: -1.5vh;
+  color: #00487c;
+  font-size: 35px;
+  cursor: pointer;
+
+}
+.page-title{
+  text-align: center;
+  padding: 0px!important;
+  mat-card-title{
+    font-weight: 500!important;
+    font-size: 20px!important;
+    margin-top: -15px;
+  }
+}
+//.submit-button{
+//  margin-top: 10px!important;
+//}
+.page-card{
+  min-height: 92vh!important;
+}
+.search-input{
+ width: 50%!important;
+  input{
+    width: 96%!important;
+  }
+  .mat-form-field-prefix, .mat-form-field-suffix{
+    position: relative;
+    right: 1vw;
+    top:-4px;
+  }
+}

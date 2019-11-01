@@ -1,0 +1,81 @@
+<mat-card class="page-card">
+    <mat-card-content>
+        <i class="material-icons back-icon" (click)="backClicked()">
+            reply
+        </i>
+        <div class="pb-1 mt-1 page-title">
+            <mat-card-title class="mb-1 ">
+               Event Comments
+            </mat-card-title>
+        </div>
+        <hr>
+        <div class="example-button-row">
+            <div class="add-comment">
+                <div fxLayout="row wrap" fxLayoutAlign="center start" class="mat-card-top">
+                    <div fxFlex.gt-sm="100" fxFlex="100" style="margin-right: 0px!important;height: 35px">
+                        <div class="pb-1 mr-1" fxFlex="100%" style="height: 35px">
+                            <input class="mat-input-element" style="width: 99%!important;" matInput
+                                   (keyup.enter)="addEventComment()"
+                                   placeholder="Comment text" name="name"
+                                   [(ngModel)]="commentText" required>
+                        </div>
+
+                    </div>
+                </div>
+
+                <i class="material-icons send-comment" (click)="addEventComment()">
+                    send
+                </i>
+                <label for="file-upload" class="comment-attachment" *ngIf="commentAttachment==undefined ">
+                    <i class="material-icons">
+                        attach_file
+                    </i>
+                </label>
+                <label class="comment-attachment" *ngIf="commentAttachment!=undefined ">
+                    <i class="material-icons " style="color: red"
+                       (click)="deleteAttachment()">
+                        remove_circle_outline
+                    </i>
+                </label>
+
+                <input type="file" id="file-upload" style="display: none" (change)="detectFiles($event)">
+            </div>
+        </div>
+        <ngx-datatable
+                class="material striped"
+                [rows]="model"
+                [columnMode]="'flex'"
+                [headerHeight]="60"
+                [messages]="{emptyMessage: 'No Data', totalMessage: 'Total'}"
+                style="width: 100%"
+                [footerHeight]="45"
+                [rowHeight]="50"
+                [loadingIndicator]="isLoading"
+                [externalPaging]="searchBox.length==0"
+                [count]="count"
+                [offset]="offset"
+                [limit]="limit"
+                (page)='getAllEventComments($event)'>
+            <ngx-datatable-column prop="comment" [resizeable]="false" [flexGrow]="6" name="Comment text ">
+            </ngx-datatable-column>
+
+            <ngx-datatable-column [resizeable]="false" [flexGrow]="2" name="Attachment">
+                <ng-template let-value="value" let-row="row" ngx-datatable-cell-template
+                             let-rowIndex="rowIndex">
+                    <a fxFlex="13%" style="cursor: pointer" *ngIf="row.attachments.length>0"
+                       [href]="baseUrl+'attachment/download/image/'+row.attachments[0]+'?force'">
+                        <i class="material-icons">
+                            attach_file
+                        </i>
+                    </a>
+                </ng-template>
+            </ngx-datatable-column>
+
+
+        </ngx-datatable>
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+    </mat-card-content>
+</mat-card>
+<div class="loading" *ngIf="isDownloading"></div>

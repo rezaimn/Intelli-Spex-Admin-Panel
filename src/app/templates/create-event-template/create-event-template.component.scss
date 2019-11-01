@@ -1,0 +1,50 @@
+
+input[type="file"] {
+  display: none;
+}
+.custom-file-upload {
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+.cancelIcon {
+  float: right;
+  position: absolute;
+  right: 2rem;
+}
+.removePhotoIcon {
+  float: left;
+  position: absolute;
+  margin: -21px;
+}
+
+.mat-list-item {
+  transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1);
+  display: inline-block;
+  position: relative;
+  padding: 4px;
+  width: 99%;
+  border-radius: 2px;
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12);
+}
+
+.my-dropzone {
+  padding: 8px;
+  transition: all 300ms ease;
+}
+
+.custom-drag-over {
+  background-color: rgba(0, 0, 0, 0.3);
+  border-color: limegreen;
+  transform: scale(1.05);
+}
+
+pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.photoBox{
+  margin-bottom: 2vh;
+}
