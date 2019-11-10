@@ -1,4 +1,21 @@
+# Intelli Spex Project
+
+## this is an admin panel for an insurance company.
+
+## users could take pics from an event and share it and the others could add comments and make posts on that event .
+## they could argue about the reasons of that event.
+
 ### How to start
+
+#screenshots
+
+![alt-text](./screen-shots/intelli-1.png)
+
+![alt-text](./screen-shots/intelli-2.png)
+
+![alt-text](./screen-shots/intelli-3.png)
+
+![alt-text](./screen-shots/intelli-4.png)
 
 **Note** that this seed project requires **node >=v8.9.0 and npm >=4**.
 
@@ -13,10 +30,6 @@ $ yarn start
 $ yarn build
 ```
 # Intelli-Spex
-##this app is a project management app
-
-### you can mange your events add post to each event and add comments on them too
-
 
 ### Code scaffolding
 
